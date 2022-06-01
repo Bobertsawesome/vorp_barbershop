@@ -7,6 +7,7 @@ local activehair
 local activebeard 
 local waitresult = false 
 local inmenu = false 
+local inChair = false 
 local blips = {}
 
 
@@ -33,6 +34,7 @@ AddEventHandler('menuapi:closemenu', function()
     Citizen.InvokeNative(0xCC8CA3E88256E58F, PlayerPedId(), 0, 1, 1, 1, 0)
     Wait(5000)
     inmenu = false 
+    inChair = false 
 end)
 local availablehairmale = {}
 local availablehairfemale = {}
@@ -130,7 +132,8 @@ Citizen.CreateThread(function()
                     FreezeEntityPosition(PlayerPedId(), true)
                     Citizen.InvokeNative(0xD710A5007C2AC539, PlayerPedId(), 0x9925C067, 0)
                     Citizen.InvokeNative(0xCC8CA3E88256E58F, PlayerPedId(), 0, 1, 1, 1, 0)
-                    openbarbermenu()
+                    inChair = true
+					openbarbermenu()
                 end
             end
         end
@@ -138,6 +141,16 @@ Citizen.CreateThread(function()
             Wait(500)
         end
     end
+end)
+
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(0)
+		if inChair then
+			Citizen.InvokeNative(0x90DA5BA5C2635416)
+			--Wait(0)
+		end
+	end
 end)
 
 function keysx(table)
@@ -218,6 +231,7 @@ function openbarbermenu()
             MenuData.CloseAll()
             Wait(2000)
             inmenu = false 
+            inChair = false 
         end
 	end,
 	function(data, menu)
