@@ -1,3 +1,6 @@
+# Edits made to original repository for Underworld Redemption
+All credit goes to the orginal creators
+
 # vorp_barbershop_lua
 barbershop script written in lua for VORP
 
