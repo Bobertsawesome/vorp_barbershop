@@ -149,6 +149,8 @@ Citizen.CreateThread(function()
 		if inChair then
 			Citizen.InvokeNative(0x90DA5BA5C2635416)
 			--Wait(0)
+		else
+			Citizen.Wait(500)
 		end
 	end
 end)
